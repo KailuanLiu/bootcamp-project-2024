@@ -1,8 +1,8 @@
 import React from 'react';
-import BlogPost from './BlogPost';
+import BlogPost from './BlogPost'; // Renamed to avoid conflict
 
-// BlogPost component
-function BlogPost({ blogs }) {
+// BlogList component
+function BlogList({ blogs }) {
     return (
         <div id="blog-container">
             {blogs.map((blog) => (
@@ -12,4 +12,4 @@ function BlogPost({ blogs }) {
     );
 }
 
-export default BlogPost;
+export default BlogList;
