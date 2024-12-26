@@ -1,4 +1,8 @@
-import React from 'react';
+import React from "react";
+import style from "./resume.module.css";
+import ResumeItem from "@/components/resumeItem";
+import SectionModel, { Section } from "@/database/resumeSchema";
+import connectDB from "@/database/db";
 
 const Resume = () => {
    return (

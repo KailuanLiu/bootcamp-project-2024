@@ -1,0 +1,136 @@
+/*general page styles*/
+.page {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/*main container*/
+.main {
+    max-width: 1000px;
+    width: 100;
+    background-color: white;
+    padding: 2rem;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+/*logo styling*/
+.logo {
+    margin-bottom: 2rem;
+}
+
+/*list styling*/
+ol{
+    font-size: 1.1rem;
+    color: #333;
+    line-height: 1.8;
+    margin: 0 0 2rem 0;
+    padding-left: 1.2rem;
+}
+
+/*call to action container*/
+.ctas {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 3rem;
+}
+
+/*primary CTA button*/ 
+.primary {
+    display: inline-flex;
+    align-items: center;
+    background-color: #3498db;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    gap: 0.6rem;
+    transition: background-color 0.3s;
+}
+
+.primary:hover {
+    background-color: #2980b9;
+}
+
+.primary img {
+    width: 20px;
+    height: 20px;
+}
+
+/*secondary CTA button*/
+.secondary {
+    display: inline-flex;
+    align-items: cneter;
+    background-color: #fff;
+    color: #3498db;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+    border: 2px solid #3498db;
+    font-weight: bold;
+    gap: 0.6rem;
+    transition: background-color 0.3s;
+}
+
+.secondary:hover {
+    background-color: #ecf4fb;
+}
+
+/*footer styles*/
+.footer {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 3re,;
+    font-size: 0.9rem;
+    color: #3498db;
+}
+
+.footer a {
+    display: flex; 
+    align-items: center;
+    text-decoration: none;
+    color: interit;
+    gap: 0.4rem;
+    transition: color 0.3s;
+}
+
+.footer a:hover {
+    color: #2980b9;
+}
+
+/*footer icon styling*/
+.footer img {
+    width: 16px;
+    height: 16px;
+}
+
+/*mobile responsive deisgn*/
+@media (max-width: 768px) {
+    .main {
+        padding: 2rem 1rem;
+        width: 90%;
+    }
+
+    .ctas {
+        flex-direction:column;
+        gap: 1rem;
+    }
+
+    .footer {
+        flex-direction: column; 
+        gap: 1rem;
+    }
+}

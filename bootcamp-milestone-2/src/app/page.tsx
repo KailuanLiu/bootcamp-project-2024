@@ -1,10 +1,11 @@
 import Image from "next/image";
-import styles from "./page.module.css";
+import styles from "./homepage.module.css";
 
 export default function Home() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
+        {/* Main Logo */}
         <Image
           className={styles.logo}
           src="/next.svg"
@@ -13,6 +14,8 @@ export default function Home() {
           height={38}
           priority
         />
+
+        {/* Instructions */}
         <ol>
           <li>
             Get started by editing <code>src/app/page.tsx</code>.
@@ -20,7 +23,9 @@ export default function Home() {
           <li>Save and see your changes instantly.</li>
         </ol>
 
+        {/* Call-to-action buttons */}
         <div className={styles.ctas}>
+          {/* Primary CTA - Deploy Now */}
           <a
             className={styles.primary}
             href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
@@ -36,6 +41,8 @@ export default function Home() {
             />
             Deploy now
           </a>
+
+          {/* Secondary CTA - Read Docs */}
           <a
             href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
             target="_blank"
@@ -46,6 +53,8 @@ export default function Home() {
           </a>
         </div>
       </main>
+
+      {/* Footer Links */}
       <footer className={styles.footer}>
         <a
           href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
@@ -61,6 +70,7 @@ export default function Home() {
           />
           Learn
         </a>
+
         <a
           href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
           target="_blank"
@@ -75,6 +85,7 @@ export default function Home() {
           />
           Examples
         </a>
+
         <a
           href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
           target="_blank"
