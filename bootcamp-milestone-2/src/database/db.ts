@@ -11,7 +11,9 @@ let connection: typeof mongoose;
  */
 const connectDB = async () => {
   if (!connection) {
+    console.log("Connecting to MongoDB...");
     connection = await mongoose.connect(url);
+    console.log("Connected to MongoDB!");
     return connection;
   }
 };
