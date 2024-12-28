@@ -1,55 +1,62 @@
-import { NextRequest, NextResponse } from 'next/server'
-import blogSchema from '@/database/blogSchema'
+import { NextRequest, NextResponse } from 'next/server';
+import connectDB from '@/database/db';
+import blogSchema from '@/database/blogSchema';
 import BlogModel from '@/database/blogSchema';
-import connectDB from '@/database/db'
 
 // Ensure the correct structure is followed
-export async function GET(req: NextRequest, { params }: { params: { slug: string } }) {
-  console.log("called api hook");
-  await connectDB(); // Ensure the database is connected
+export async function GET(req: NextRequest, { params }: { params: Promise<{ slug: string }> }) {
+    try {
+        // Await the resolution of the `params` Promise
+        const resolvedParams = await params;
+        const { slug } = resolvedParams; // Destructure slug after promise resolution
 
-  const { slug } = params; // Destructur slug from params
+        console.log("called api hook", slug);
 
-  try {
-    const blog = await blogSchema.findOne({ slug }).orFail();
-    return NextResponse.json(blog);
-  } catch (err) {
-    console.error("Error finding blog:", err);
-    return NextResponse.json("Blog not found.", { status: 404 });
-  }
+        await connectDB(); // Ensure the database is connected
+
+        const blog = await blogSchema.findOne({ slug }).orFail();
+        return NextResponse.json(blog);
+    } catch (err) {
+        console.error("Error finding blog:", err);
+        return NextResponse.json("Blog not found.", { status: 404 });
+    }
 }
 
-export async function POST(req: NextRequest, { params }: { params: { slug: string } }) {
-    console.log("POST request to add a comment");
-    await connectDB();
-
-    const { slug } = params;
-    const body = await req.json();
-
+export async function POST(req: NextRequest, { params }: { params: Promise<{ slug: string }> }) {
     try {
-        //validate the body
+        // Await the resolution of the `params` Promise
+        const resolvedParams = await params;
+        const { slug } = resolvedParams; // Destructure slug after promise resolution
+
+        console.log("POST request to add a comment");
+        await connectDB(); // Ensure MongoDB is connected
+
+        const body = await req.json(); // Parse the request body
+
+        // Validate the body
         const { user, comment, time } = body;
         if (!user || !comment || !time) {
             return NextResponse.json({ error: "Invalid comment data" }, { status: 400 });
         }
 
-        //construct comment object
+        // Construct the comment object
         const newComment = {
-            user, 
-            comment, 
-            time: new Date(time), // ensure time is a Date object
+            user,
+            comment,
+            time: new Date(time), // Ensure time is a Date object
         };
 
-        //update blog with new comment
+        // Update the blog with the new comment
         const updatedBlog = await BlogModel.findOneAndUpdate(
             { slug },
             { $push: { comments: newComment } },
-            { new: true, useFindAndModify: false } // return updated document
+            { new: true, useFindAndModify: false } // Return the updated document
         );
 
-        if(!updatedBlog) {
+        if (!updatedBlog) {
             return NextResponse.json({ error: "Blog not found" }, { status: 404 });
         }
+
         return NextResponse.json({ message: "Comment added successfully", blog: updatedBlog });
     } catch (err) {
         console.error("Error adding comment:", err);

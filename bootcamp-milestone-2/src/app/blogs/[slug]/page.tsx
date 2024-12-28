@@ -1,6 +1,6 @@
 "use client";
 import Comment from "@/components/Comment";
-import style from "@/app/globals.css";
+import style from "./blogs.module.css";
 import type { Blog } from "@/database/blogSchema";
 import { use, useEffect, useState } from "react";
 

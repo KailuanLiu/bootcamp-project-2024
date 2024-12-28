@@ -1,84 +1,48 @@
-body {
-    font-family: Arial, sans-seif;
-    margin: 0;
-    padding: 0;
-    background-color: #f8f9fa;
-}
-
-/*main container*/
+/* Centering the .about div in the middle of the screen */
 .main {
     display: flex;
-    flex-direction: center;
-    justify-content: center;
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    background-color: white;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    margin-top: 2rem;
-    padding-bottom: 3rem;
-}
-
-/*about section*/
-.about {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    margin-top: 2rem;
-    animation: slideFromLeft ls ease-in-out;
-}
-
-/*about image styling*/
-.aboutImage {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-}
-
-.aboutImage img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-}
-
-/*about text section*/
-.aboutText {
-    flex: 1;
-    padding: 2rem;
-    color: #333;
-}
-
-.aboutText p {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    color: #2c3e50;
-}
-
-/*animation for sliding effect*/
-@keyframes slideFromLeft {
-    0% {
-        opacity: 0;
-        transform: translateX(-50%);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-/*responsive design*/
-@media (max-width:768px) {
+    justify-content: center; 
+    align-items: center;   
+    height: 100vh;          
+  }
+    
+    /* CSS for home page */
+    
     .about {
-        flex-direction: column;
-        align-items: cneter;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      justify-self: center;
+      width: 50%;
+      padding: 20px;
+      background-color: #f8f8f8;
+      /* border: 1px solid #ccc; */
+      border-radius: 10px;
+      margin-top: -50px;
+      gap: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
-    .aboutImage {
-        margin-bottom : 2rem;
+    
+    .aboutImage img {
+      max-width: 300px;
+      border-radius: 3px;
+      justify-items: center;
+      justify-content: center;
+      /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); */
     }
-
+    
     .aboutText {
-        text-align: center;
+      flex: 1;
     }
-}
+    
+    .aboutText h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    
+    .aboutText p {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+  

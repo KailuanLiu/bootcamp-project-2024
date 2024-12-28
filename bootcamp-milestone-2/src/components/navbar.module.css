@@ -1,60 +1,294 @@
-/* navbar.module.css */
-
-/* Navbar container */
-.header {
+  .navbar {
+    font-family: monospace;
+    font-weight: bold;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 7%;
+    z-index: 10;
+  
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #3498db; /* Blue background */
-    padding: 15px 30px;
+    text-align: center;
+  
+    background-color: rgb(47,79, 79);
     color: white;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 10px 10px;
+  
+    /* Debug border */
+    /* border: solid red; */
   }
   
-  /* Styling for the heading */
-  .header h1 {
-    font-size: 1.8rem;
-    font-weight: bold;
-    margin: 0;
-  }
-  
-  /* Navigation links */
-  nav {
+  .navList {
     display: flex;
-    gap: 20px;
+    flex-direction: row;
+    position: relative;
+    right: 30px;
+    list-style: none;
+  
+    /* Debug border */
+    /* border: solid blue; */
   }
   
-  /* Link styling */
-  nav a {
+  .navbar a {
+    color: var(--cg-white);
+    font-weight: bold;
+    margin: 0 12px;
     text-decoration: none;
-    color: white;
-    font-size: 1.1rem;
-    font-weight: 500;
-    transition: color 0.3s ease;
+    letter-spacing: 2px;
+  
+    font-family: monospace;
   }
   
-  /* Hover effect for links */
-  nav a:hover {
-    color: #2980b9; /* Lighter blue */
+  .navbar a:hover {
+    color: var(--cg-blue);
+    text-decoration: underline;
   }
   
-  /* Mobile view */
-  @media (max-width: 768px) {
-    .header {
-      flex-direction: column;
-      align-items: flex-start;
-      text-align: center;
-    }
-  
-    nav {
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 10px;
-    }
-  
-    .header h1 {
-      font-size: 1.5rem;
-      margin-bottom: 10px;
-    }
+  .navbar a:active {
+    color: var(--cg-blue);
   }
   
+  .logo a {
+    font-family: Georgia;
+  }
+  
+  .logo a:hover {
+    text-decoration: None;
+  }
+  
+  /* main {
+    padding: 0 20px 40px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  } */
+  
+  .pageTitle {
+    display: flex;
+    justify-content: center;
+    font-size: 40px;
+    font-family: Georgia;
+  }
+  
+  /* CSS for portfolio grid */
+  
+  .project {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    margin: 1em 0 2em 0;
+  
+    /* Debug border */
+    /* border: 2px solid blue; */
+  }
+  
+  .itemLink {
+    width: 70%;
+  
+    /* Debug border */
+    /* border: 2px solid red; */
+  }
+  
+  .projectImage {
+    object-fit: cover;
+    width: 100%;
+    height: 500px;
+    flex-basis: 50px;
+    flex-grow: 2;
+  
+    /* Debug border */
+    /* border: 2px solid black; */
+  }
+  
+  .projectDetails {
+    display: flex;
+    background-color: var(--cg-white);
+    height: 100px;
+    flex-shrink: 1;
+    padding: 0 20px;
+    margin: 0px;
+    line-height: 1.5;
+    overflow: scroll;
+  
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+  
+    /* Debug border */
+    /* border: 2px solid green; */
+  }
+  
+  .projectDetails a {
+    color: var(--cg-black);
+    text-decoration: none;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+  
+  .projectDetails a:hover {
+    color: var(--cg-blue);
+    text-decoration: underline;
+  }
+  
+  .projectDetails {
+    font-weight: lighter;
+  }
+  
+  .projectName {
+    font-weight: bold;
+    font-size: 20px;
+  }
+  
+  /* CSS for home page */
+  
+  .about {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 10px;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+  }
+  
+  .aboutImage img {
+    max-width: 300px;
+    border-radius: 3px;
+    justify-items: center;
+    justify-content: center;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); */
+  }
+  
+  .aboutText {
+    flex: 1;
+    margin-left: 20px;
+  }
+  
+  .aboutText h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .aboutText p {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  /* CSS for resume page */
+  
+  .button {
+    background-color: var(--cg-black);
+    border: none;
+    color: var(--cg-white);
+  
+    font-family: monospace;
+  
+    padding: 5px 7px;
+    text-align: center;
+  
+    border-radius: 2px;
+  }
+  
+  .button:hover {
+    background-color: var(--cg-blue);
+  }
+
+  .resume {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 20px; /* Space between the columns */
+    padding: 20px;
+    margin: 20px;
+    background-color: var(--darkslate-gray);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+  }
+  
+  .resume h2 {
+    font-family: Georgia;
+    width: 500px;
+  }
+  
+  .resumeImg{
+    margin-top: 10px;
+  }
+
+  .section{
+    place-items: center;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background-color: white;
+    border: 1px solid #ccc;
+  }
+  
+  /* CSS for contact form */
+  
+  /* label {
+    display: block;
+    margin-bottom: 8px;
+    font-family: Georgia;
+    font-weight: bold;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    resize: none;
+  }
+  
+  /* Add some spacing to the form */
+  /*form {
+    width: 500px;
+    margin: 0 auto;
+  } */
+  
+  /* CSS for footer */
+  
+  .footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--cg-black);
+    color: var(--cg-white);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;
+  }
+
+  .contact{
+    place-items: center;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background-color: white;
+    border: 1px solid #ccc;
+    margin: 10px;
+    padding: 5px;
+    justify-self: center;
+  }
+  
+  .contactText{
+    font-size: 20px;
+    font-family: Georgia;
+    align-self: center;
+    text-align: center;
+  }
+
+  /* .contact-image{
+    margin-top: 20px;
+  } */

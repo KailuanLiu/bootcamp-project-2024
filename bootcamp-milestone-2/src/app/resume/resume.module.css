@@ -1,128 +1,125 @@
-/*general layout*/
-.resumeContainer {
-    font-family: 'Arial', sans-serif;
-    margin: 20px;
-    padding: 20px;
-    max-width: 1000px;
-    background-color: white;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    color: #333;
-    line-height: 1.6;
-    margin: 0 auto;
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  padding: 10px;
+  /* background-color: #f9f9f9; */
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-/*header styles*/
-.header {
-    text-align: center;
-    margin-bottom: 30px;
+
+.titleContent {
+  display: flex;
+  flex-direction: column; /* Stack the image and button vertically */
+  justify-content: center; /* Center vertically */
+  align-items: center; /* Center horizontally */
+  gap: 10px; /* Add space between the image and button */
 }
 
-.header h1 {
-    font-size: 2.5rem;
-    color: #3498db;
-    margin: 0;
+.button {
+  background-color: rgb(47, 79, 79);
+  color: #fff;
+  padding: 8px 20px;
+  font-size: 12px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  text-align: center; /* Ensure the button text is centered */
 }
 
-.header p {
-    font-size: 1rem;
-    color: #555;
+.button:hover {
+  background-color: rgb(29, 44, 44);
 }
 
-.header a {
-    color: #3498db;
-    text-decoration: none;
+.titleImage {
+  max-width: 80%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
-.hedaer a:hover {
-    text-decoration: underline;
+.titleImage img {
+  border-radius: 5px;
 }
 
-/*section styles*/
-section {
-    margin-bottom: 30px;
+
+/* Resume Page Styles */
+.resume {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two equal columns */
+  gap: 30px; /* Space between the items */
+  padding: 40px;
+  border-radius: 10px;
+  /* box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); */
+  /* background-color: white; */
 }
 
-section h2 {
-    font-size: 1.8rem;
-    color: #3498db;
-    margin-bottom: 10px;
+
+.section {
+  width: 100%;
+  padding: 20px;
+  background-color: rgb(251, 240, 226);
+  /* background-color: white; */
+  border: 1px solid rgb(47, 79, 79);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-section h3 {
-    font-size: 1.4rem;
-    color: #2c3e50;
-    margin-bottom: 5px;
+.sectionTitle {
+  font-size: 24px;
+  color: rgb(47, 79, 79);
+  font-family: 'Georgia', serif;
+  border-bottom: 2px solid rgb(29, 44, 44);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
 }
 
-section ul {
-    list-style-type: none;
-    padding-left: 0;
+.entry {
+  margin-bottom: 15px;
 }
 
-section ul li {
-    font-size: 1.1rem;
-    color: #555;
-    margin-bottom: 8px;
+.entryTitle {
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(47, 79, 79);
 }
 
-/*link styling for external URLs*/
-a {
-    color: #3498db;
-    text-decoration: none;
+.entryInfo {
+  font-size: 16px;
+  color: #555;
 }
 
-a:hover {
-    text-decoration: underline;
+.entryDescrip {
+  font-size: 16px;
+  color: #666;
+  margin-top: 5px;
 }
 
-/*section title styling*/
-section h2, section h3 {
-    font-weight: 600;
+.skill-list{
+  list-style: disc;
+  padding-left: 20px;
 }
 
-/*skill & interest section*/
-.skills li, .interests li {
-    font-size: 1.1rem;
-    margin-bottom: 8ps;
+.skillList li {
+  font-size: 16px;
+  color: #444;
 }
 
-/*footer styling */
-footer {
-    text-align: center;
-    font-size: 0.9rem;
-    color: #555;
-    margin-top: 40px;
-}
-
-footer a {
-    color: #3498db;
-}
-
-footer a:hover {
-    text-decoration: underline;
-}
-
-/*responsive design for smaller screens*/
+/* Responsiveness for mobile */
 @media (max-width: 768px) {
-    .resumeContainer {
-        padding: 15px;
-        margin: 20x;
-    }
+  .resume {
+    padding: 20px;
+  }
 
-    .header h1 {
-        font-size: 2rem;
-    }
+  .section {
+    width: 90%;
+  }
 
-    .header p {
-        font-size: 0.9rem;
-    }
+  .resumeImg img {
+    max-width: 100%;
+  }
 
-    section h2 {
-        font-size: 1.5rem;
-    }
-
-    section h3 {
-        font-size: 1.2rem;
-    }
+  .button {
+    width: 90%;
+    text-align: center;
+  }
 }

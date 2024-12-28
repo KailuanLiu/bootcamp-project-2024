@@ -4,12 +4,12 @@ import style from "./home.module.css";
 export default function HomePage() {
   return (
     <main className={style.main}>
-        <div className={`${style.about} animate-slideFromLeft`}>
+        <div className={`${style.about} animate-slideFromTop`}>
             <div className={style.aboutImage}>
-              <img width="500" src="/Users/kailuanliu/IdeaProjects/y2023-24-q3-csc203-project4-liu-kailuan-huang-anna/images/Witch2.png" alt="witch for project"/>
+              <img width="500" src="/images/iu.jpg" alt="my wife"/>
             </div>
             <div className={style.aboutText}>
-                <p>My name is Kailuan Liu and currently studying computer science at Cal Poly SLO</p>
+                <p>Hi! My name is <em>Min Hset Hlaing</em> and I'm a <strong> software engineer </strong> with a goal of focusing in ML!</p>
             </div>
         </div>
     </main>

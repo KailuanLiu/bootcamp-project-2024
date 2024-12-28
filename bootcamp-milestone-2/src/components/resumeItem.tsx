@@ -13,7 +13,7 @@ interface EntryItem {
 // Define the props type for ResumeSection
 interface ResumeSectionProps {
   title: string;
-  items: string | EntryItem[];
+  items: (string | EntryItem)[];
 }
 
 const ResumeItem: React.FC<ResumeSectionProps> = ({ title, items }) => {

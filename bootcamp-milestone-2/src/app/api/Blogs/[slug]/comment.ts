@@ -24,8 +24,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       return res.status(200).json(blog);
     } catch (err) {
-        console.error(err);
-        return res.status(500).json({ error: "Internal Server Error" });
+      console.error(err);
+      return res.status(500).json({ error: "Internal Server Error" });
     }
   } else {
     return res.status(405).json({ error: "Method Not Allowed" });

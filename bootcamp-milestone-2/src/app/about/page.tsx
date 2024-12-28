@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import style from "./about.module.css";
-import emailjs from "emails-com";
+import emailjs from "emailjs-com";
 
 export default function AboutPage() {
 
