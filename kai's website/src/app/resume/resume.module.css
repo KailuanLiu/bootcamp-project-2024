@@ -1,0 +1,125 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  padding: 10px;
+  /* background-color: #f9f9f9; */
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+.titleContent {
+  display: flex;
+  flex-direction: column; /* Stack the image and button vertically */
+  justify-content: center; /* Center vertically */
+  align-items: center; /* Center horizontally */
+  gap: 10px; /* Add space between the image and button */
+}
+
+.button {
+  background-color: rgb(47, 79, 79);
+  color: #fff;
+  padding: 8px 20px;
+  font-size: 12px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  text-align: center; /* Ensure the button text is centered */
+}
+
+.button:hover {
+  background-color: rgb(29, 44, 44);
+}
+
+.titleImage {
+  max-width: 80%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.titleImage img {
+  border-radius: 5px;
+}
+
+
+/* Resume Page Styles */
+.resume {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two equal columns */
+  gap: 30px; /* Space between the items */
+  padding: 40px;
+  border-radius: 10px;
+  /* box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); */
+  /* background-color: white; */
+}
+
+
+.section {
+  width: 100%;
+  padding: 20px;
+  background-color: rgb(251, 240, 226);
+  /* background-color: white; */
+  border: 1px solid rgb(47, 79, 79);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.sectionTitle {
+  font-size: 24px;
+  color: rgb(47, 79, 79);
+  font-family: 'Georgia', serif;
+  border-bottom: 2px solid rgb(29, 44, 44);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.entry {
+  margin-bottom: 15px;
+}
+
+.entryTitle {
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(47, 79, 79);
+}
+
+.entryInfo {
+  font-size: 16px;
+  color: #555;
+}
+
+.entryDescrip {
+  font-size: 16px;
+  color: #666;
+  margin-top: 5px;
+}
+
+.skill-list{
+  list-style: disc;
+  padding-left: 20px;
+}
+
+.skillList li {
+  font-size: 16px;
+  color: #444;
+}
+
+/* Responsiveness for mobile */
+@media (max-width: 768px) {
+  .resume {
+    padding: 20px;
+  }
+
+  .section {
+    width: 90%;
+  }
+
+  .resumeImg img {
+    max-width: 100%;
+  }
+
+  .button {
+    width: 90%;
+    text-align: center;
+  }
+}

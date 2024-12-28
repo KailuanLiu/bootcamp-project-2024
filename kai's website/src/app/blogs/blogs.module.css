@@ -1,0 +1,72 @@
+  /* CSS for home page */
+  
+  .about {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    justify-self: center;
+    width: 50%;
+    border-radius: 5px;
+    margin-top: 10px;
+    gap: 20px;
+  }
+
+  .blogPreviews {
+    display: flex; /* Make sure this is defined if not already */
+    flex-direction: column; /* Arrange items vertically */
+    gap: 2rem; /* Increase the gap between the previews */
+    width: 100%; /* Ensure it spans the container width if needed */
+  }
+  
+  .blogPreviews p {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  /* CSS for resume page */
+  
+  .button {
+    background-color: var(--cg-black);
+    border: none;
+    color: var(--cg-white);
+  
+    font-family: monospace;
+  
+    padding: 5px 7px;
+    text-align: center;
+  
+    border-radius: 2px;
+  }
+  
+  .button:hover {
+    background-color: var(--cg-blue);
+  }
+
+  .resume {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 20px; /* Space between the columns */
+    padding: 20px;
+    margin: 20px;
+    background-color: var(--darkslate-gray);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .resume h2 {
+    font-family: Georgia;
+    width: 500px;
+  }
+  
+  .resumeImg{
+    margin-top: 10px;
+  }
+
+  .section{
+    place-items: center;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background-color: white;
+    border: 1px solid #ccc;
+  }

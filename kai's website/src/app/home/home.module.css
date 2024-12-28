@@ -1,0 +1,48 @@
+/* Centering the .about div in the middle of the screen */
+.main {
+    display: flex;
+    justify-content: center; 
+    align-items: center;   
+    height: 100vh;          
+  }
+    
+    /* CSS for home page */
+    
+    .about {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      justify-self: center;
+      width: 50%;
+      padding: 20px;
+      background-color: #f8f8f8;
+      /* border: 1px solid #ccc; */
+      border-radius: 10px;
+      margin-top: -50px;
+      gap: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .aboutImage img {
+      max-width: 300px;
+      border-radius: 3px;
+      justify-items: center;
+      justify-content: center;
+      /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); */
+    }
+    
+    .aboutText {
+      flex: 1;
+    }
+    
+    .aboutText h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    
+    .aboutText p {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+  
