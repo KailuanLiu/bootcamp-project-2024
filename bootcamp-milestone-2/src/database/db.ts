@@ -1,6 +1,8 @@
 // db.ts
 import mongoose from "mongoose";
+//import Blog from 
 
+export
 const url: string = process.env.MONGO_URI as string;
 let connection: typeof mongoose;
 
