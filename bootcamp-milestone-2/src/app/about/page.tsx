@@ -53,7 +53,7 @@ export default function AboutPage() {
     <main className={style.main}>
         <div className={style.contact}>
             <div className={style.contactImage}>
-                <img width="500" src="./public/Witch1.png" alt="witch"/>
+                <img width="500" src="./Witch1.png" alt="witch"/>
             </div>
             <div className={style.contactText}>
                 <p>Please reach out to me if you have any questions!</p>

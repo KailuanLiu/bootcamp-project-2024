@@ -15,7 +15,7 @@ const ResumePage = async () => {
       <main className={style.main}>
         <div className={style.titleContent}>
           <div className={style.titleImage}>
-            <img width="500" src="./public/Witch1.png" alt="small witch" />
+            <img width="500" src="./Witch1.png" alt="small witch" />
           </div>
           <a className={style.button} href="resume.pdf" download>
             Download Resume
