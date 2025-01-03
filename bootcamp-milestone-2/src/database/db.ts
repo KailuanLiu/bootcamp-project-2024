@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 
 export
 const url: string = process.env.MONGO_URI as string;
+console.log(url);
 let connection: typeof mongoose;
 
 /**
@@ -13,11 +14,16 @@ let connection: typeof mongoose;
  */
 const connectDB = async () => {
   if (!connection) {
-    console.log("Connecting to MongoDB...");
-    connection = await mongoose.connect(url);
-    console.log("Connected to MongoDB!");
-    return connection;
+    try {
+      console.log("Connecting to MongoDB...");
+      connection = await mongoose.connect(url);
+      console.log("Connected to MongoDB!");
+      return connection;
+    } catch (errror){
+      console.error("Error connecting:");
+      throw new Error("database connection failed");
   }
+}
 };
 
 export default connectDB;

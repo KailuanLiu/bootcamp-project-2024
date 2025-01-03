@@ -5,16 +5,17 @@ import SectionModel, { Section } from "@/database/resumeSchema";
 import connectDB from "@/database/db";
 
 const ResumePage = async () => {
+  
   // Fetch data from the database directly in the server component
   await connectDB();
 
   try {
-    const resumeEntries = await SectionModel.find().orFail(); // Fetch all sections
+    const resumeEntries = await SectionModel.find({}); // Fetch all sections
     return (
       <main className={style.main}>
         <div className={style.titleContent}>
           <div className={style.titleImage}>
-            <img width="500" src="./images/IUPaletteCover.png" alt="my wife" />
+            <img width="500" src="./public/Witch1.png" alt="witch" />
           </div>
           <a className={style.button} href="resume.pdf" download>
             Download Resume

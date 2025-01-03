@@ -34,6 +34,6 @@ const sectionSchema = new Schema<Section>({
 });
 
 // Define the model for the Section collection
-const SectionModel = models["resumeentries"] || model<Section>("resumeentries", sectionSchema);
+const SectionModel = models["resumeEntries.Experience"] || model<Section>("resumeEntries.Experience", sectionSchema);
 
 export default SectionModel;
