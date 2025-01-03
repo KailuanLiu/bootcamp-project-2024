@@ -1,109 +1,94 @@
 .main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center; 
-    align-items: center;   
-    min-height: 100vh;
-    font-family: Arial, Helvetica, sans-serif, serif;
-  }
-  
-    /* Styling for the contact section */
-    .contact {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      gap: 5px;
-      width: 60%;
-      padding: 20px;
-      /* background-color: #ddd; */
-    }
-    
-    .contactImage {
-      max-width: 50%;
-      border-radius: 5px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    }
-    .contactImage img{
-      border-radius: 5px;
-    }
-    
-    .contactText p {
-      font-size: 18px;
-      text-align: center;
-      color: #333;
-      line-height: 1.6;
-    }
-  
-  /* Styling for the form */
-  .form {
-    width: 40%;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: white;
-    /* border: 1px solid #000000; */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
-  }
-  
-  
-  .form label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #444;
-  }
-  
-  .form input[type="text"],
-  .form input[type="email"],
-  .form textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
-    color: #333;
-    background-color: #fafafa;
-    transition: all 0.3s ease;
-  }
-  
-  
-  .form textarea {
-    resize: none;
-    min-height: 120px;
-  }
-  
-  .form input[type="submit"] {
-    width: 100%;
-    padding: 10px;
-    background-color: rgb(47,79, 79);
-    color: #fff;
-    font-size: 18px;
-    font-weight: bold;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .form input[type="submit"]:hover {
-    background-color: rgb(29, 44, 44);;
-  }
-  
-  /* Media Query for Responsive Design */
-  @media (max-width: 768px) {
-    .contact {
-      width: 90%;
-    }
-  
-    .form {
-      width: 90%;
-    }
-  
-    .contactImage img {
-      max-width: 100%;
-    }
-  }
-  
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;   
+  min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif, serif;
+  background-color: #DEF4E8; /* Soft light green background */
+}
+
+/* Styling for the contact section */
+.contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 5px;
+  width: 60%;
+  padding: 20px;
+  background-color: #CCDDEF; /* Soft pastel background */
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.contactImage {
+  max-width: 50%;
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.contactImage img {
+  border-radius: 5px;
+}
+
+.contactText p {
+  font-size: 18px;
+  text-align: center;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Styling for the form */
+.form {
+  width: 40%;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid #A890B8; /* Soft lilac border */
+}
+
+.form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #444;
+}
+
+.form input[type="text"],
+.form input[type="email"],
+.form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #9FBEEA; /* Soft blue-gray border */
+  border-radius: 4px;
+  font-size: 16px;
+  color: #333;
+  background-color: #fafafa;
+  transition: all 0.3s ease;
+}
+
+.form textarea {
+  resize: none;
+  min-height: 120px;
+}
+
+.form input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #9088C0; /* Lavender button color */
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form input[type="submit"]:hover {
+  background-color: #A890B8; /* Slightly darker lavender on hover */
+}
