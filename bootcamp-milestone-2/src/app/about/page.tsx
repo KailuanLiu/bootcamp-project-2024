@@ -53,10 +53,10 @@ export default function AboutPage() {
     <main className={style.main}>
         <div className={style.contact}>
             <div className={style.contactImage}>
-                <img width="500" src="./images/iu i stan u 4.jpg" alt="my wife"/>
+                <img width="500" src="./public/Witch1.png" alt="witch"/>
             </div>
             <div className={style.contactText}>
-                <p>Hi! Please feel free to reach out to me!! :D</p>
+                <p>Please reach out to me if you have any questions!</p>
             </div>
         </div>
 

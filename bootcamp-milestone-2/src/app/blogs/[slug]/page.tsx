@@ -77,17 +77,6 @@ export default function Blog({ params }: { params: Promise<{ slug: string }> }) 
     const response = await postComment(slug, commentData);
 
     if (response) {
-      // Add the new comment to the local state
-      // setBlog((prev) =>
-      //   prev
-      //     ? {
-      //         ...prev,
-      //         comments: [...prev.comments, commentData],
-      //       }
-      //     : null
-      // );
-
-      // Clear the form
       setNewComment({ user: "", comment: "" });
     }
 
