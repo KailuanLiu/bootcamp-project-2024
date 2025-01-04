@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import connectDB from '@/database/db';
-import blogSchema from '@/database/blogSchema';
 import BlogModel from '@/database/blogSchema';
 
 // Ensure the correct structure is followed
