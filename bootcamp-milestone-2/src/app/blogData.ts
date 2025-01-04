@@ -5,6 +5,7 @@ export type Blog = {
    image: string;
    imageAlt: string;
    slug: string; //url name used to redirect to specific page
+
 };
 
 export const blogs: Blog[] = [
@@ -15,6 +16,7 @@ export const blogs: Blog[] = [
       image: "/souffle_pancakes.jpg",
       imageAlt: "image of souffle pancakes",
       slug: "blog-1",
+
    },
    {
       title: "Blog2",
@@ -22,6 +24,7 @@ export const blogs: Blog[] = [
       description: "art182 project 3",
       image: "/project3.pdf",
       imageAlt: "psd of project 3",
-      slug: "blog-2"
+      slug: "blog-2",
+
    }
 ]
