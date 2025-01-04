@@ -1,80 +1,144 @@
-/* CSS for home page */
-
-.about {
+/* General Styling for Blog Page */
+.blogPage {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  justify-self: center;
-  width: 50%;
-  border-radius: 5px;
-  margin-top: 10px;
-  gap: 20px;
-  background-color: #DEF4E8; /* Soft light green background */
+  align-items: center;
+  gap: 30px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  background-color: #DEF4E8; /* Light green background */
 }
 
+/* Title Section for Blog */
+.blogTitleContent {
+  display: flex;
+  flex-direction: column; /* Stack the image and button vertically */
+  justify-content: center; /* Center vertically */
+  align-items: center; /* Center horizontally */
+  gap: 10px; /* Add space between the image and button */
+}
+
+.blogButton {
+  background-color: #9088C0; /* Soft lavender button color */
+  color: #fff;
+  padding: 8px 20px;
+  font-size: 12px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  text-align: center; /* Ensure the button text is centered */
+  border-radius: 4px; /* Rounded corners for the button */
+}
+
+.blogButton:hover {
+  background-color: #A890B8; /* Slightly darker lavender on hover */
+}
+
+.blogTitleImage {
+  max-width: 80%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.blogTitleImage img {
+  border-radius: 5px;
+}
+
+/* Blog Content Section */
+.blogContent {
+  display: grid;
+  grid-template-columns: 1fr; /* Single column layout for blog content */
+  gap: 30px; /* Space between the items */
+  padding: 40px;
+  border-radius: 10px;
+  background-color: #CCDDEF; /* Soft pastel blue background */
+}
+
+/* Individual Blog Post */
+.blogPost {
+  padding: 20px;
+  background-color: #F8F8F8; /* Light gray background for individual posts */
+  border: 1px solid #A890B8; /* Soft lavender border */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.blogPostTitle {
+  font-size: 24px;
+  color: #2F4F4F; /* Dark slate color for titles */
+  font-family: 'Georgia', serif;
+  border-bottom: 2px solid #1D2C2C; /* Darker border for post title */
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.blogPostContent {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Blog Previews Section (in home or index page) */
 .blogPreviews {
-  display: flex; /* Ensure this is defined */
-  flex-direction: column; /* Arrange items vertically */
+  display: flex;
+  flex-direction: column;
   gap: 2rem; /* Increased gap between previews */
   width: 100%; /* Ensure it spans the container width */
 }
 
-.blogPreviews p {
-  font-size: 16px;
-  line-height: 1.5;
-  color: #333; /* Darker text color for better readability */
+.blogPreview {
+  padding: 20px;
+  background-color: #F8F8F8; /* Light gray background for previews */
+  border: 1px solid #A890B8; /* Soft lavender border */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
-/* CSS for resume page */
+.blogPreviewTitle {
+  font-size: 20px;
+  font-weight: bold;
+  color: #2F4F4F;
+}
 
-.button {
+.blogPreviewExcerpt {
+  font-size: 16px;
+  color: #555;
+  margin-top: 10px;
+}
+
+.blogPreviewLink {
+  color: #9088C0; /* Lavender color for the link */
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 15px;
+  display: inline-block;
+  padding: 5px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.blogPreviewLink:hover {
+  background-color: #A890B8;
+  color: white;
+}
+
+/* Button on Blog Post Page */
+.blogButtonPost {
   background-color: #9088C0; /* Soft lavender button color */
   border: none;
   color: #fff;
   font-family: monospace;
-  padding: 5px 7px;
+  padding: 5px 15px;
   text-align: center;
   border-radius: 2px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.button:hover {
+.blogButtonPost:hover {
   background-color: #A890B8; /* Slightly darker lavender on hover */
 }
 
-.resume {
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* Two equal columns */
-  gap: 20px; /* Space between the columns */
-  padding: 20px;
-  margin: 20px;
-  background-color: #CCDDEF; /* Soft pastel blue background */
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.resume h2 {
-  font-family: Georgia;
-  width: 500px;
-  color: #333; /* Darker text color */
-}
-
-.resumeImg {
-  margin-top: 10px;
-}
-
-.section {
-  place-items: center;
-  justify-content: center;
-  align-items: center;
-  border-radius: 5px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-}
-
-/* Adding soft background to .about section and .section */
-.about, .section {
+/* Adding soft background to blog sections and posts */
+.blogContent, .blogPost, .blogPreview {
   background-color: #DEF4E8; /* Light green background */
 }
