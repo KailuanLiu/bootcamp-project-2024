@@ -10,7 +10,7 @@ export default function BlogPreview(props: Blog) {
       <div className={style.content}>
         {/* <Image className={style.blogImg} src={props.image} alt={props.imageAlt} width={500} height={500} ></Image> */}
         <p className={style.date}>{props.date}</p>
-        <p>Click in to view details...</p>
+        <p>Click for details</p>
         {/* <p className={style.description}>{props.description}</p> */}
       </div>
 	  </div>

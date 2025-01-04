@@ -1,31 +1,56 @@
-.blogPreviewContainer{
+.blogPreviewContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: aliceblue;
-    border-radius: 20px;
-    padding: 3px;
+    background-color: #DEF4E8; /* Light mint green background */
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    width: 300px; /* Fixed width for better control */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
-.content{
+.blogPreviewContainer:hover {
+    transform: translateY(-8px); /* Lift effect on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+    background-color: #CCDDEF; /* Change background color on hover */
+}
+
+.content {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 3px;
-    gap: 5px;
+    padding: 10px 0;
+    gap: 10px;
+    text-align: center; /* Center the text */
 }
 
-.title{
-    font-size: x-large;
-    font-weight: bold;
+.title {
+    font-size: 1.25rem; /* Adjusted for better scaling */
+    font-weight: 600; /* Slightly lighter weight for better readability */
+    color: #9088C0; /* Muted purple for the title */
+    margin-bottom: 10px;
 }
 
-.date{
-    font-size: x-small;
+.date {
+    font-size: 0.875rem; /* A bit larger for readability */
+    color: #9FBEEA; /* Soft blue color for the date */
 }
 
-.blogImage{
+.blogImage {
+    width: 100%; /* Ensures the image scales responsively */
     height: auto;
+    border-radius: 10px; /* Rounded corners on the image */
+    object-fit: cover; /* Maintain image aspect ratio */
+    max-height: 200px; /* Prevent excessive height */
+    border: 4px solid #CCDDEF; /* Subtle border around the image */
+    transition: transform 0.3s ease, border-color 0.3s ease;
 }
+
+.blogPreviewContainer:hover .blogImage {
+    transform: scale(1.05); /* Slight zoom-in effect for the image */
+    border-color: #9FBEEA; /* Change image border color on hover */
+}
+
