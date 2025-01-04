@@ -111,7 +111,7 @@ export default function Blog({ params }: { params: Promise<{ slug: string }> }) 
               <Comment key={index} comment={comment} />
             ))
           ) : (
-            <p>No comments yet. Be the first to comment!</p>
+            <p>No comments yet.</p>
           )}
 
           {/* Form to add a new comment */}
