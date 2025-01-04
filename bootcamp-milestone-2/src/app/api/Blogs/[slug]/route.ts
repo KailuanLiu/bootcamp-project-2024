@@ -14,7 +14,7 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ slug
 
         await connectDB(); // Ensure the database is connected
 
-        const blog = await blogSchema.findOne({ slug }).orFail();
+        const blog = await BlogModel.findOne({ slug }).orFail();
         return NextResponse.json(blog);
     } catch (err) {
         console.error("Error finding blog:", err);
@@ -37,6 +37,12 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ slu
         const { user, comment, time } = body;
         if (!user || !comment || !time) {
             return NextResponse.json({ error: "Invalid comment data" }, { status: 400 });
+        }
+        if (!comment || typeof comment !== 'string' || comment.trim() === '') {
+            return NextResponse.json({ error: "comment is required, can't be empty" }, { status: 400 });
+        }
+        if (!time || isNaN(new Date(time).getTime())) {
+            return NextResponse.json({ error: "invalid time format" }, { status: 400 });
         }
 
         // Construct the comment object
