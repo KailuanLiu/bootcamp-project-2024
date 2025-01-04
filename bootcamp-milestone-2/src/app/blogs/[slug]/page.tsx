@@ -1,36 +1,33 @@
 "use client";
-import { useEffect, useState } from "react";
 import Comment from "@/components/Comment";
 import style from "./blogs.module.css";
 import type { Blog } from "@/database/blogSchema";
-import { useRouter } from "next/router";  // Use Next.js' `useRouter` hook
+import { use, useEffect, useState } from "react";
 
 async function getBlog(slug: string): Promise<Blog | null> {
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-  if (!apiUrl) {
-    console.error("API URL not defined!");
-    return null;
-  }
+	try {
+		// This fetches the blog from an api endpoint that would GET the blog
+		const res = await fetch(`http://localhost:3000/api/Blogs/${slug}`, {
+			cache: "no-store",	
+		})
+		// This checks that the GET request was successful
+		if (!res.ok) {
+			throw new Error("Failed to fetch blog");
+		}
 
-  try {
-    const res = await fetch(`${apiUrl}/api/Blogs/${slug}`, {
-      cache: "no-store",
-    });
+		return res.json();
+	} catch (err: unknown) {
+		console.log(`error: ${err}`);
+		return null;
 
-    if (!res.ok) {
-      throw new Error("Failed to fetch blog");
-    }
-
-    return res.json();
-  } catch (err: unknown) {
-    console.log(`error: ${err}`);
-    return null;
-  }
+	}
 }
 
+// Function to handle posting a new comment
 async function postComment(slug: string, commentData: { user: string; comment: string; time: string }) {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/Blogs/${slug}`, {
+    console.log("posting comment")
+    const res = await fetch(`http://localhost:3000/api/Blogs/${slug}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(commentData),
@@ -41,32 +38,30 @@ async function postComment(slug: string, commentData: { user: string; comment: s
     }
 
     return res.json();
-  } catch (err: unknown) {
+  } 
+  catch (err: unknown) {
     console.error("Error submitting comment:", err);
     return null;
   }
 }
 
-export default function Blog() {
-  const router = useRouter();  // Get access to the router
-  const { slug } = router.query;  // Extract `slug` from the URL parameters
+export default function Blog({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = use(params); // Unwrap params using `use()`
   const [blog, setBlog] = useState<Blog | null>(null);
   const [newComment, setNewComment] = useState({ user: "", comment: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Fetch blog data on mount
   useEffect(() => {
-    if (slug) {  // Ensure `slug` is available before making the request
-      console.log("Fetching blog with slug:", slug);
-      getBlog(slug as string).then((blog) => {
-        if (!blog) {
-          console.log("Blog not found");
-        } else {
-          console.log("Blog found:", blog);
-        }
-        setBlog(blog);
-      });
-    }
+    console.log("fetching blog with slug:", slug);
+    getBlog(slug).then((blog) => {
+      if(!blog) {
+        console.log("blog not found");
+      } else {
+        console.log("blog found:", blog);
+      }
+      setBlog(blog);
+    });
   }, [slug]);
 
   // Handle form submission for new comments
@@ -82,10 +77,11 @@ export default function Blog() {
 
     const commentData = {
       ...newComment,
+      // time: new Date(),
       time: new Date().toISOString(),
     };
 
-    const response = await postComment(slug as string, commentData);
+    const response = await postComment(slug, commentData);
 
     if (response) {
       setNewComment({ user: "", comment: "" });
@@ -95,6 +91,7 @@ export default function Blog() {
   };
 
   if (blog) {
+
     return (
       <main className={style.blogPage}>
         <h1 className={style.title}>{blog.title}</h1>
@@ -117,6 +114,7 @@ export default function Blog() {
           <h2>Comments</h2>
           {blog.comments.length > 0 ? (
             blog.comments.map((comment, index) => (
+              
               <Comment key={index} comment={comment} />
             ))
           ) : (
@@ -124,31 +122,31 @@ export default function Blog() {
           )}
 
           {/* Form to add a new comment */}
-          <form onSubmit={handleSubmit} className={style.commentForm}>
-            <h3>Add a Comment</h3>
-            <input
-              type="text"
-              placeholder="Your name"
-              value={newComment.user}
-              onChange={(e) =>
-                setNewComment((prev) => ({ ...prev, user: e.target.value }))
-              }
-              required
-              className={style.input}
-            />
-            <textarea
-              placeholder="Your comment"
-              value={newComment.comment}
-              onChange={(e) =>
-                setNewComment((prev) => ({ ...prev, comment: e.target.value }))
-              }
-              required
-              className={style.textarea}
-            />
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className={style.submitButton}
+         <form onSubmit={handleSubmit} className={style.commentForm}>
+           <h3>Add a Comment</h3>
+           <input
+             type="text"
+             placeholder="Your name"
+             value={newComment.user}
+             onChange={(e) =>
+               setNewComment((prev) => ({ ...prev, user: e.target.value }))
+             }
+             required
+             className={style.input}
+           />
+           <textarea
+             placeholder="Your comment"
+             value={newComment.comment}
+             onChange={(e) =>
+               setNewComment((prev) => ({ ...prev, comment: e.target.value }))
+             }
+             required
+             className={style.textarea}
+           />
+           <button
+             type="submit"
+             disabled={isSubmitting}
+             className={style.submitButton}
             >
               {isSubmitting ? "Submitting..." : "Submit"}
             </button>
