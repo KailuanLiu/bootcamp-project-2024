@@ -4,7 +4,6 @@ import mongoose from "mongoose";
 
 export
 const url: string = process.env.MONGO_URI as string;
-console.log(url);
 let connection: typeof mongoose;
 
 /**
