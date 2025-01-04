@@ -8,7 +8,7 @@ async function getBlogs() {
   await connectDB();
 
   try {
-    const blogs = await BlogModel.find().sort({ date: -1 });
+    const blogs = await BlogModel.find().sort({ date: -1 }).orFail();
     return blogs;
   } catch (err) {
     console.log(err);
@@ -27,9 +27,9 @@ export default async function BlogsPage() {
             <Link key={blog.slug} href={`/blogs/${blog.slug}`}>
                 <BlogPreview
                   title={blog.title}
-                  date={blog.date.toLocaleDateString()}
                   description={blog.description}
                   image={blog.image}
+                  date={blog.date.toLocaleDateString()}
                   imageAlt={blog.imageAlt}
                   slug={blog.slug}
                 />

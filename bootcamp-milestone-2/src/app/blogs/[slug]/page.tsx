@@ -1,71 +1,165 @@
-export type Blog = {
-	title: string;
-	date: string;
-	description: string;
-    image: string;
-    imageAlt: string;
-    slug: string;  // A slug is a URL name used to redirect to a specific page 
-};
+"use client";
+import Comment from "@/components/Comment";
+import style from "./blogs.module.css";
+import type { Blog } from "@/database/blogSchema";
+import { use, useEffect, useState } from "react";
 
-export const blogs: Blog[] = [
-    {
-        title: "blog1",
-        date: "1-3-25",
-        description: "i ate souffle pancakes today",
-        image: "/souffle_pancakes.jpg",
-        imageAlt: "souffle pancakes",
-        slug: "blog-1",
-    },
-    {
-        title: "blog2",
-        date: "1-3-25",
-        description: "art182 project 3",
-        image: "/project3.pdf",
-        imageAlt: "art182-project-3",
-        slug: "blog-2",
-    }
-]
+async function getBlog(slug: string): Promise<Blog | null> {
+	try {
+		// This fetches the blog from an api endpoint that would GET the blog
+		const res = await fetch(`http://localhost:3000/api/Blogs/${slug}`, {
+			cache: "no-store",	
+		})
+		// This checks that the GET request was successful
+		if (!res.ok) {
+			throw new Error("Failed to fetch blog");
+		}
 
+		return res.json();
+	} catch (err: unknown) {
+		console.log(`error: ${err}`);
+		return null;
 
-function appendBlogsToContainer(blogs: Blog[]) {
-    const blogContainer = document.getElementById('blog-container');
-
-    if (!blogContainer) {
-        console.error('Blog container not found :(');
-        return;
-    }
-
-    blogs.forEach(blog => {
-        const blogDiv = document.createElement('div');
-        blogDiv.classList.add('blog');
-
-        // make a title element with h1 styling and append it as a child
-        const title = document.createElement('h1');
-        title.textContent = blog.title;
-        blogDiv.appendChild(title);
-
-        // the same as the title element but with p styling
-        const date = document.createElement('p');
-        date.textContent = blog.date;
-        blogDiv.appendChild(date);
-
-        const description = document.createElement('p');
-        description.textContent = blog.description;
-        blogDiv.appendChild(description);
-
-        const image = document.createElement('img');
-        image.src = blog.image;
-        image.alt = blog.imageAlt;
-        blogDiv.appendChild(image);
-
-        const readMoreLink = document.createElement('a');
-        readMoreLink.href = `/blog/${blog.slug}`;
-        readMoreLink.textContent = 'This is her instagram. Go follow her';
-        blogDiv.appendChild(readMoreLink);
-
-        // append this div for the blog with all the child elements to the blogContainer
-        blogContainer.appendChild(blogDiv);
-    });
+	}
 }
 
-appendBlogsToContainer(blogs);
+// Function to handle posting a new comment
+async function postComment(slug: string, commentData: { user: string; comment: string; time: string }) {
+  try {
+    console.log("posting comment")
+    const res = await fetch(`http://localhost:3000/api/Blogs/${slug}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(commentData),
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to post comment");
+    }
+
+    return res.json();
+  } 
+  catch (err: unknown) {
+    console.error("Error submitting comment:", err);
+    return null;
+  }
+}
+
+export default function Blog({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = use(params); // Unwrap params using `use()`
+  const [blog, setBlog] = useState<Blog | null>(null);
+  const [newComment, setNewComment] = useState({ user: "", comment: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Fetch blog data on mount
+  useEffect(() => {
+    console.log("fetching blog with slug:", slug);
+    getBlog(slug).then((blog) => {
+      if(!blog) {
+        console.log("blog not found");
+      } else {
+        console.log("blog found:", blog);
+      }
+      setBlog(blog);
+    });
+  }, [slug]);
+
+  // Handle form submission for new comments
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!newComment.user || !newComment.comment) {
+      alert("Please fill out all fields.");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    const commentData = {
+      ...newComment,
+      // time: new Date(),
+      time: new Date().toISOString(),
+    };
+
+    const response = await postComment(slug, commentData);
+
+    if (response) {
+      setNewComment({ user: "", comment: "" });
+    }
+
+    setIsSubmitting(false);
+  };
+
+  if (blog) {
+
+    return (
+      <main className={style.blogPage}>
+        <h1 className={style.title}>{blog.title}</h1>
+        <p className={style.date}>
+          {new Date(blog.date).toLocaleDateString("en-US", {
+            month: "long",
+            day: "numeric",
+            year: "numeric",
+          })}
+        </p>
+        <img
+          src={blog.image}
+          alt={blog.imageAlt}
+          className={style.blogImage}
+        />
+        <p className={style.description}>{blog.description}</p>
+
+        {/* Render comments */}
+        <section className={style.commentsSection}>
+          <h2>Comments</h2>
+          {blog.comments.length > 0 ? (
+            blog.comments.map((comment, index) => (
+              
+              <Comment key={index} comment={comment} />
+            ))
+          ) : (
+            <p>No comments yet.</p>
+          )}
+
+          {/* Form to add a new comment */}
+         <form onSubmit={handleSubmit} className={style.commentForm}>
+           <h3>Add a Comment</h3>
+           <input
+             type="text"
+             placeholder="Your name"
+             value={newComment.user}
+             onChange={(e) =>
+               setNewComment((prev) => ({ ...prev, user: e.target.value }))
+             }
+             required
+             className={style.input}
+           />
+           <textarea
+             placeholder="Your comment"
+             value={newComment.comment}
+             onChange={(e) =>
+               setNewComment((prev) => ({ ...prev, comment: e.target.value }))
+             }
+             required
+             className={style.textarea}
+           />
+           <button
+             type="submit"
+             disabled={isSubmitting}
+             className={style.submitButton}
+            >
+              {isSubmitting ? "Submitting..." : "Submit"}
+            </button>
+          </form>
+        </section>
+      </main>
+    );
+  }
+
+  return (
+    <main className={style.blogPage}>
+      <h1>Blog Not Found</h1>
+      <p>We couldn&apos;t find the blog you were looking for.</p>
+    </main>
+  );
+}
