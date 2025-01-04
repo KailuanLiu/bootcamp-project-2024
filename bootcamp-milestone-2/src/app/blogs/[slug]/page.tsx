@@ -4,61 +4,63 @@ import style from "./blogs.module.css";
 import type { Blog } from "@/database/blogSchema";
 import { use, useEffect, useState } from "react";
 
+// function to fetch a blog based on its slug from the API
 async function getBlog(slug: string): Promise<Blog | null> {
 	try {
-		// This fetches the blog from an api endpoint that would GET the blog
-		const res = await fetch(`http://localhost:3000/api/Blogs/${slug}`, {
-			cache: "no-store",	
+    // fetch blog data from server with the given slug
+    const res = await fetch(`http://localhost:3000/api/Blogs/${slug}`, {
+			cache: "no-store",	// disable caching for this request to ensure fresh
 		})
 		// This checks that the GET request was successful
 		if (!res.ok) {
 			throw new Error("Failed to fetch blog");
 		}
 
-		return res.json();
+		return res.json();  // return blog data in JSON format
 	} catch (err: unknown) {
-		console.log(`error: ${err}`);
-		return null;
+		console.log(`error: ${err}`); // log error to the console
+		return null;  // return null if there was an error
 
 	}
 }
 
-// Function to handle posting a new comment
+// Function to handle posting a new comment to the server
 async function postComment(slug: string, commentData: { user: string; comment: string; time: string }) {
   try {
-    console.log("posting comment")
+    console.log("posting comment")  // log that we're posting a comment
     const res = await fetch(`http://localhost:3000/api/Blogs/${slug}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(commentData),
+      method: "POST", // POST method to send new comment data
+      headers: { "Content-Type": "application/json" }, // specify JSON content type
+      body: JSON.stringify(commentData),  // convert comment data to JSON and send it  as the request body
     });
 
+    // check if response was successful
     if (!res.ok) {
-      throw new Error("Failed to post comment");
+      throw new Error("Failed to post comment"); // if not, throw new error 
     }
 
+    // return the response data (updated blog)
     return res.json();
-  } 
-  catch (err: unknown) {
-    console.error("Error submitting comment:", err);
-    return null;
+  } catch (err: unknown) {
+    console.error("Error submitting comment:", err); // log any error during comment submission
+    return null;  // return null if post request fails
   }
 }
 
 export default function Blog({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = use(params); // Unwrap params using `use()`
-  const [blog, setBlog] = useState<Blog | null>(null);
-  const [newComment, setNewComment] = useState({ user: "", comment: "" });
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [blog, setBlog] = useState<Blog | null>(null);  // use to store blog data
+  const [newComment, setNewComment] = useState({ user: "", comment: "" }); // store new comment input
+  const [isSubmitting, setIsSubmitting] = useState(false);  // state track submission status of comment 
 
   // Fetch blog data on mount
   useEffect(() => {
     console.log("fetching blog with slug:", slug);
     getBlog(slug).then((blog) => {
       if(!blog) {
-        console.log("blog not found");
+        console.log("blog not found"); // log if no blog is found
       } else {
-        console.log("blog found:", blog);
+        console.log("blog found:", blog); // if blog is found
       }
       setBlog(blog);
     });
@@ -66,27 +68,30 @@ export default function Blog({ params }: { params: Promise<{ slug: string }> }) 
 
   // Handle form submission for new comments
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault();   // prevent default form submission behavior
 
+    // validate that both user and comment fields are filled out
     if (!newComment.user || !newComment.comment) {
-      alert("Please fill out all fields.");
+      alert("Please fill out all fields."); // aler user if any field is missing
       return;
     }
 
-    setIsSubmitting(true);
+    setIsSubmitting(true);  // set submission state to true to disable the submit button
 
+    // prepare the comment data, adding a timestamp in ISO format
     const commentData = {
       ...newComment,
       // time: new Date(),
-      time: new Date().toISOString(),
+      time: new Date().toISOString(),   // set time to current date and time
     };
 
-    const response = await postComment(slug, commentData);
+    const response = await postComment(slug, commentData);  // send comment data to the server
 
     if (response) {
-      setNewComment({ user: "", comment: "" });
+      setNewComment({ user: "", comment: "" }); // reset submission state
     }
 
+    // if blog exists, render blog and its comments
     setIsSubmitting(false);
   };
 

@@ -1,41 +1,45 @@
 "use client"
 
-import React, { useState } from "react";
-import style from "./about.module.css";
-import emailjs from "emailjs-com";
+import React, { useState } from "react";    //import react and useState hook
+import style from "./about.module.css";     // style
+import emailjs from "emailjs-com";          //import emailjs to send emails
 
 export default function AboutPage() {
-
+    // use useState hook to manage form state
     const [formState, setFormState] = useState({
         name: "",
         email: "",
         message: "",
     });
+    // useState to manage status message 
     const [status, setStatus] = useState(""); // For showing success/error messages
 
+    // handles change in the input fields
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target; // gets name and value of the input
     setFormState({ ...formState, [name]: value });
     };
 
+    // handles form submission
     const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault();     // prevent default form submission
 
+    // check if all fields are filled out 
     if (!formState.name || !formState.email || !formState.message) {
-        setStatus("Please fill out all fields.");
-        return;
+        setStatus("Please fill out all fields.");   // shows a message if one field is empty
+        return;     // stops submission process
     }
 
     emailjs
         .send(
-        "service_i8g80et", 
-        "template_m5coetp", 
+        "service_i8g80et", // service ID for EmailJS
+        "template_m5coetp", // template ID for EmailJS
         {
-            name: formState.name,
+            name: formState.name,   // pass form data
             email: formState.email,
             message: formState.message,
         },
-        "-J25k7TUiwdKo5Udn" 
+        "IFlSJsj16QZEUd0d1" // api key for emailjs
         )
         .then(
         () => {
@@ -50,7 +54,7 @@ export default function AboutPage() {
     };
 
   return (
-    <main className={style.main}>
+    <main className={style.main}> 
         <div className={style.contact}>
             <div className={style.contactImage}>
                 <img width="200" src="./Witch1.png" alt="witch"/>
