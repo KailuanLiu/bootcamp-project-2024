@@ -16,7 +16,7 @@ export type Blog = {
     image: string;
     imageAlt: string;
     slug: string;
-    comments: IComment[];
+    // comments: IComment[];
 };
 
 // Create the blog schema
@@ -27,13 +27,13 @@ const blogSchema = new Schema<Blog>({
     image: { type: String, required: true },
     imageAlt: { type: String, required: true },
     slug: { type: String, required: true, unique: true },
-    comments: [
-        {
-            user: { type: String, required: true },
-            comment: { type: String, required: true },
-            time: { type: Date, default: Date.now },
-        },
-    ],
+    // comments: [
+    //     {
+    //         user: { type: String, required: true },
+    //         comment: { type: String, required: true },
+    //         time: { type: Date, default: Date.now },
+    //     },
+    // ],
 });
 
 // Define the collection and model
