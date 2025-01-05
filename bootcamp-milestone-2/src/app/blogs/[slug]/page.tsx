@@ -9,6 +9,7 @@ async function getBlog(slug: string): Promise<Blog | null> {
 	try {
     // fetch blog data from server with the given slug
     const res = await fetch(`http://localhost:3000/api/Blogs/${slug}`, {
+      mode: 'no-cors',
 			cache: "no-store",	// disable caching for this request to ensure fresh
       method: "GET",
 		});
