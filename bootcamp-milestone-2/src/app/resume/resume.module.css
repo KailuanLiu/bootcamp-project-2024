@@ -3,72 +3,66 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 30px;
-  padding: 10px;
+  gap: 20px;
+  padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  background-color: #DEF4E8; /* Light green background */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #DEF4E8; /* Light green */
 }
 
 /* Title Section */
 .titleContent {
   display: flex;
-  flex-direction: column; /* Stack the image and button vertically */
-  justify-content: center; /* Center vertically */
-  align-items: center; /* Center horizontally */
-  gap: 10px; /* Add space between the image and button */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
 .button {
-  background-color: #9088C0; /* Soft lavender button color */
-  color: #fff;
+  background-color: #9088C0; /* Soft lavender */
+  color: white;
   padding: 8px 20px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: bold;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
   transition: background-color 0.3s ease;
-  text-align: center; /* Ensure the button text is centered */
-  border-radius: 4px; /* Rounded corners for the button */
 }
 
 .button:hover {
-  background-color: #A890B8; /* Slightly darker lavender on hover */
+  background-color: #A890B8; /* Slightly darker lavender */
 }
 
 .titleImage {
-  max-width: 80%;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-}
-
-.titleImage img {
+  max-width: 100%;
   border-radius: 5px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Resume Page Styles */
 .resume {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Two equal columns */
-  gap: 30px; /* Space between the items */
-  padding: 40px;
-  border-radius: 10px;
-  background-color: #CCDDEF; /* Soft pastel blue background */
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  padding: 30px;
+  background-color: #F5F9FB; /* Light background */
 }
 
 .section {
-  width: 100%;
   padding: 20px;
-  background-color: #F8F8F8; /* Light gray background for sections */
+  background-color: #FFFFFF; /* White background */
   border: 1px solid #A890B8; /* Soft lavender border */
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
 .sectionTitle {
   font-size: 24px;
-  color: #2F4F4F; /* Dark slate color for titles */
-  font-family: 'Georgia', serif;
-  border-bottom: 2px solid #1D2C2C; /* Darker border for section title */
-  padding-bottom: 10px;
-  margin-bottom: 20px;
+  font-weight: bold;
+  color: #2F4F4F; /* Dark slate color */
+  margin-bottom: 15px;
+  border-bottom: 2px solid #A890B8; /* Soft lavender border */
 }
 
 .entry {
@@ -76,29 +70,29 @@
 }
 
 .entryTitle {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
-  color: #2F4F4F; /* Dark slate color for entry titles */
+  color: #2F4F4F; /* Dark slate color */
 }
 
 .entryInfo {
-  font-size: 16px;
-  color: #555; /* Dark gray for entry info */
+  font-size: 14px;
+  color: #777; /* Light gray for info text */
 }
 
 .entryDescrip {
-  font-size: 16px;
-  color: #666; /* Slightly lighter gray for descriptions */
-  margin-top: 5px;
+  font-size: 14px;
+  color: #555; /* Darker gray for descriptions */
 }
 
 .skill-list {
-  list-style: disc;
-  padding-left: 20px;
+  list-style: none;
+  padding-left: 0;
+  margin-top: 10px;
 }
 
 .skillList li {
-  font-size: 16px;
-  color: #444; /* Slightly darker gray for list items */
+  font-size: 14px;
+  color: #444;
+  padding: 6px 0;
 }
-

@@ -3,29 +3,29 @@ import connectDB from '@/database/db';
 import BlogModel from '@/database/blogSchema';
 import Cors from "cors";
 
-const cors = Cors({
-    methods: ['GET', 'POST'],
-    origin: "http://localhost:3000",
-});
+// const cors = Cors({
+//     methods: ['GET', 'POST'],
+//     origin: "http://localhost:3000",
+// });
 
-function runCors(req: NextRequest) {
-    return new Promise((resolve, reject) => {
-        //mimic express-like request/response handling with dummy response
-        cors(req as any, {} as any, (err: any) => {
-            if (err) {
-                reject(err);
-            }
-            resolve(null); // CORS success
-        });
-    });
-}
+// function runCors(req: NextRequest) {
+//     return new Promise((resolve, reject) => {
+//         //mimic express-like request/response handling with dummy response
+//         cors(req as any, {} as any, (err: any) => {
+//             if (err) {
+//                 reject(err);
+//             }
+//             resolve(null); // CORS success
+//         });
+//     });
+// }
 
 // Ensure the correct structure is followed
 // GET request handler to fetch a blog by its slug
 export async function GET(req: NextRequest, { params }: { params: Promise<{ slug: string }> }) {
     try {
         // Await the resolution of the `params` Promise to access the slug
-        await runCors(req);
+        // await runCors(req);
         const resolvedParams = await params;
         const { slug } = resolvedParams; // Destructure slug after promise resolution
 
