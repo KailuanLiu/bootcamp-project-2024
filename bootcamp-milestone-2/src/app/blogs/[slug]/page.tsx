@@ -4,17 +4,7 @@ import style from "./blogs.module.css";
 import type { Blog } from "@/database/blogSchema";
 import { use, useEffect, useState } from "react";
 
-import express from "express";
-import cors from "cors";
 
-const app = express();
-
-app.use(
-  cors({
-    origin: 'http://localhost:3000',
-    methods: ['GET', 'POST'],
-  })
-)
 
 // function to fetch a blog based on its slug from the API
 async function getBlog(slug: string): Promise<Blog | null> {

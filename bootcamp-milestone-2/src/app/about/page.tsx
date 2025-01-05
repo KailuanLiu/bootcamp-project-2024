@@ -32,8 +32,8 @@ export default function AboutPage() {
 
     emailjs
         .send(
-        "service_i8g80et", // service ID for EmailJS
-        "template_m5coetp", // template ID for EmailJS
+        "service_dqq3ttm", // service ID for EmailJS
+        "template_y3qtyze", // template ID for EmailJS
         {
             name: formState.name,   // pass form data
             email: formState.email,
