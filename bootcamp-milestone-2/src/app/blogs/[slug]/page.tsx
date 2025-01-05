@@ -12,16 +12,25 @@ async function getBlog(slug: string): Promise<Blog | null> {
 			cache: "no-store",	// disable caching for this request to ensure fresh
       method: "GET",
 		});
+
+    console.log("Response Status:", res.status);
     // Log the raw response to inspect it
     const rawData = await res.text();  // Get the raw text before parsing to JSON
     console.log("Raw Response Data:", rawData);
+
 		// This checks that the GET request was successful
 		if (!res.ok) {
-			throw new Error("Failed to fetch blog");
+			throw new Error(`Failed to fetch blog. Status Code: ${res.status}`);
 		}
 		return res.json();  // return blog data in JSON format
 	} catch (err: unknown) {
-		console.log(`error: ${err}`); // log error to the console
+    // Log the error if something went wrong
+    if (err instanceof Error) {
+      console.log(`Error: ${err.message}`);
+    } else {
+      console.log("Unknown error:", err);
+    }
+		// console.log(`error: ${err}`); // log error to the console
 		return null;  // return null if there was an error
 
 	}
