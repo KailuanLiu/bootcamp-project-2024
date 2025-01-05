@@ -28,7 +28,7 @@ export const blogs: Blog[] = [
       title: "Blog2",
       date: "1/3/25",
       description: "art182 project 3",
-      image: "/Project3.pdf",
+      image: "/Project3.jpg",
       imageAlt: "psd of project 3",
       slug: "blog-2",
       // comments: [
