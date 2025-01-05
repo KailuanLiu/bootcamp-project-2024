@@ -4,6 +4,7 @@ import style from './blogPreview.module.css'
 import { Blog } from '@/app/blogData';
 
 export default function BlogPreview(props: Blog) {
+
   return (
     <div className={style.blogPreviewContainer}>  
       <h3 className={style.title}> {props.title} </h3>
