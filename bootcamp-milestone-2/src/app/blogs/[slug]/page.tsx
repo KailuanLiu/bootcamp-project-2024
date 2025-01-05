@@ -10,16 +10,13 @@ async function getBlog(slug: string): Promise<Blog | null> {
     // fetch blog data from server with the given slug
     const res = await fetch(`http://localhost:3000/api/Blogs/${slug}`, {
 			cache: "no-store",	// disable caching for this request to ensure fresh
+      method: "GET",
 		});
 		// This checks that the GET request was successful
 		if (!res.ok) {
 			throw new Error("Failed to fetch blog");
 		}
-
-    const blogData = await res.json();
-    console.log(blogData);
-    return blogData;
-		// return res.json();  // return blog data in JSON format
+		return res.json();  // return blog data in JSON format
 	} catch (err: unknown) {
 		console.log(`error: ${err}`); // log error to the console
 		return null;  // return null if there was an error
@@ -105,68 +102,67 @@ export default function Blog({ params }: { params: Promise<{ slug: string }> }) 
         <p>We couldn&apos;t find the blog you were looking for.</p>
       </main>
     );
-  }
+  } 
+    return (
+      <main className={style.blogPage}>
+        <h1 className={style.title}>{blog.title}</h1>
+        <p className={style.date}>
+          {new Date(blog.date).toLocaleDateString("en-US", {
+            month: "long",
+            day: "numeric",
+            year: "numeric",
+          })}
+        </p>
+        <img
+          src={blog.image}
+          alt={blog.imageAlt}
+          className={style.blogImage}
+        />
+        <p className={style.description}>{blog.description}</p>
 
-  return (
-    <main className={style.blogPage}>
-      <h1 className={style.title}>{blog.title}</h1>
-      <p className={style.date}>
-        {new Date(blog.date).toLocaleDateString("en-US", {
-          month: "long",
-          day: "numeric",
-          year: "numeric",
-        })}
-      </p>
-      <img
-        src={blog.image}
-        alt={blog.imageAlt}
-        className={style.blogImage}
-      />
-      <p className={style.description}>{blog.description}</p>
-
-      {/* Render comments */}
-      <section className={style.commentsSection}>
-         <h2>Comments</h2>
-          {blog.comments.length > 0 ? (
-          blog.comments.map((comment, index) => (
+        {/* Render comments */}
+        <section className={style.commentsSection}>
+          <h2>Comments</h2>
+            {blog.comments.length > 0 ? (
+            blog.comments.map((comment, index) => (
               
-            <Comment key={index} comment={comment} />
-          ))
-        ) : (
-          <p>No comments yet.</p>
-        )}
+              <Comment key={index} comment={comment} />
+            ))
+          ) : (
+            <p>No comments yet.</p>
+          )}
 
-        {/* Form to add a new comment */}
-       <form onSubmit={handleSubmit} className={style.commentForm}>
-         <h3>Add a Comment</h3>
-         <input
-           type="text"
-           placeholder="Your name"
-           value={newComment.user}
-           onChange={(e) =>
-           setNewComment((prev) => ({ ...prev, user: e.target.value }))
-           }
-           required
-           className={style.input}
-         />
-         <textarea
-           placeholder="Your comment"
-           value={newComment.comment}
-           onChange={(e) =>
-             setNewComment((prev) => ({ ...prev, comment: e.target.value }))
-           }
-           required
-           className={style.textarea}
-         />
-         <button
-           type="submit"
-           disabled={isSubmitting}
-           className={style.submitButton}
-          >
-            {isSubmitting ? "Submitting..." : "Submit"}
-          </button>
-        </form>
-      </section>
-    </main>
-  );
-}
+          {/* Form to add a new comment */}
+        <form onSubmit={handleSubmit} className={style.commentForm}>
+          <h3>Add a Comment</h3>
+          <input
+            type="text"
+            placeholder="Your name"
+            value={newComment.user}
+            onChange={(e) =>
+            setNewComment((prev) => ({ ...prev, user: e.target.value }))
+          }
+            required
+            className={style.input}
+          />
+          <textarea
+            placeholder="Your comment"
+            value={newComment.comment}
+            onChange={(e) =>
+              setNewComment((prev) => ({ ...prev, comment: e.target.value }))
+            }
+            required
+            className={style.textarea}
+          />
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className={style.submitButton}
+            >
+              {isSubmitting ? "Submitting..." : "Submit"}
+            </button>
+          </form>
+        </section>
+      </main>
+    );
+  }
