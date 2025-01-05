@@ -2,6 +2,17 @@ import { NextRequest, NextResponse } from 'next/server';
 import connectDB from '@/database/db';
 import BlogModel from '@/database/blogSchema';
 
+import express from "express";
+import cors from "cors";
+
+const app = express();
+
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'POST'],
+  })
+)
 // Ensure the correct structure is followed
 // GET request handler to fetch a blog by its slug
 export async function GET(req: NextRequest, { params }: { params: Promise<{ slug: string }> }) {
