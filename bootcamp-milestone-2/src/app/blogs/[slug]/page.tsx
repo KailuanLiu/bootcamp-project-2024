@@ -57,6 +57,7 @@ export default function Blog({ params }: { params: Promise<{ slug: string }> }) 
   useEffect(() => {
     console.log("fetching blog with slug:", slug);
     getBlog(slug).then((blog) => {
+      console.log("Fetched blog data:", blog);
       if(!blog) {
         console.log("blog not found"); // log if no blog is found
       } else {
