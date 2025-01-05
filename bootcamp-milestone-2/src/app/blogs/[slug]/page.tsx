@@ -12,6 +12,9 @@ async function getBlog(slug: string): Promise<Blog | null> {
 			cache: "no-store",	// disable caching for this request to ensure fresh
       method: "GET",
 		});
+    // Log the raw response to inspect it
+    const rawData = await res.text();  // Get the raw text before parsing to JSON
+    console.log("Raw Response Data:", rawData);
 		// This checks that the GET request was successful
 		if (!res.ok) {
 			throw new Error("Failed to fetch blog");
