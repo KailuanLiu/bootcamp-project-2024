@@ -12,7 +12,7 @@ async function getBlog(slug: string): Promise<Blog | null> {
 	try {
     // fetch blog data from server with the given slug
     const res = await fetch(`${apiUrl}/api/Blogs/${slug}`, {
-      mode: 'no-cors',
+      // mode: 'no-cors',
 			cache: "no-store",	// disable caching for this request to ensure fresh
       method: "GET",
 		});
@@ -42,9 +42,10 @@ async function getBlog(slug: string): Promise<Blog | null> {
 
 // Function to handle posting a new comment to the server
 async function postComment(slug: string, commentData: { user: string; comment: string; time: string }) {
+  const apiUrl = 'https://bootcamp-project-2024-q6r7.vercel.app';
   try {
     console.log("posting comment")  // log that we're posting a comment
-    const res = await fetch(`http://localhost:3000/api/Blogs/${slug}`, {
+    const res = await fetch(`${apiUrl}/api/Blogs/${slug}`, {
       method: "POST", // POST method to send new comment data
       headers: { "Content-Type": "application/json" }, // specify JSON content type
       body: JSON.stringify(commentData),  // convert comment data to JSON and send it  as the request body
