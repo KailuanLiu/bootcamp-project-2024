@@ -4,17 +4,21 @@ import style from "./blogs.module.css";
 import type { Blog } from "@/database/blogSchema";
 import { use, useEffect, useState } from "react";
 
+type Props = {
+  params: Promise<{ slug: string }>;
+};
 
 
 // function to fetch a blog based on its slug from the API
-async function getBlog(slug: string): Promise<Blog | null> {
-  const apiUrl = 'https://bootcamp-project-2024-q6r7.vercel.app';
+async function getBlog(slug: string) {
+  // const apiUrl = 'https://bootcamp-project-2024-q6r7.vercel.app';
+  const apiUrl = 'http://localhost:3000/api/Blogs/${slug}';
 	try {
     // fetch blog data from server with the given slug
     const res = await fetch(`${apiUrl}/api/Blogs/${slug}`, {
       // mode: 'no-cors',
 			cache: "no-store",	// disable caching for this request to ensure fresh
-      method: "GET",
+      // method: "GET",
 		});
 
     console.log("Response Status:", res.status);
@@ -42,7 +46,8 @@ async function getBlog(slug: string): Promise<Blog | null> {
 
 // Function to handle posting a new comment to the server
 async function postComment(slug: string, commentData: { user: string; comment: string; time: string }) {
-  const apiUrl = 'https://bootcamp-project-2024-q6r7.vercel.app';
+  // const apiUrl = 'https://bootcamp-project-2024-q6r7.vercel.app';
+  const apiUrl = 'http://localhost:3000/api/Blogs/${slug}';
   try {
     console.log("posting comment")  // log that we're posting a comment
     const res = await fetch(`${apiUrl}/api/Blogs/${slug}`, {
