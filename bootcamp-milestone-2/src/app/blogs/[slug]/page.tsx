@@ -8,9 +8,10 @@ import { use, useEffect, useState } from "react";
 
 // function to fetch a blog based on its slug from the API
 async function getBlog(slug: string): Promise<Blog | null> {
+  const apiUrl = 'https://bootcamp-project-2024-q6r7.vercel.app';
 	try {
     // fetch blog data from server with the given slug
-    const res = await fetch(`http://localhost:3000/api/Blogs/${slug}`, {
+    const res = await fetch(`${apiUrl}/api/Blogs/${slug}`, {
       mode: 'no-cors',
 			cache: "no-store",	// disable caching for this request to ensure fresh
       method: "GET",
