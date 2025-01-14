@@ -4,6 +4,7 @@ import style from "./blogs.module.css";
 import type { Blog } from "@/database/blogSchema";
 import { use, useEffect, useState } from "react";
 
+// expects params to be a promise
 type Props = {
   params: Promise<{ slug: string }>;
 };
@@ -69,7 +70,7 @@ async function postComment(slug: string, commentData: { user: string; comment: s
   }
 }
 
-export default function Blog({ params }: { params: Promise<{ slug: string }> }) {
+export default function Blog({ params }: Props) {
   const { slug } = use(params); // Unwrap params using `use()`
   const [blog, setBlog] = useState<Blog | null>(null);  // use to store blog data
   const [newComment, setNewComment] = useState({ user: "", comment: "" }); // store new comment input
