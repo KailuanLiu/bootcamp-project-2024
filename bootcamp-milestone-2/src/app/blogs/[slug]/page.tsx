@@ -2,7 +2,6 @@
 import Comment from "@/components/Comment";
 import style from "./blogs.module.css";
 import type { Blog } from "@/database/blogSchema";
-import { use, useEffect, useState } from "react";
 
 // expects params to be a promise
 type Props = {
@@ -13,45 +12,41 @@ type Props = {
 // function to fetch a blog based on its slug from the API
 async function getBlog(slug: string) {
   // const apiUrl = 'https://bootcamp-project-2024-q6r7.vercel.app';
-  const apiUrl = 'http://localhost:3000/api/Blogs/${slug}';
+  const apiUrl = 'http://localhost:3000/api/blogs/${slug}';
 	try {
     // fetch blog data from server with the given slug
-    const res = await fetch(`${apiUrl}/api/Blogs/${slug}`, {
+    const res = await fetch(`${apiUrl}/api/blogs/${slug}`, {
       // mode: 'no-cors',
 			cache: "no-store",	// disable caching for this request to ensure fresh
       // method: "GET",
 		});
 
-    console.log("Response Status:", res.status);
-    // Log the raw response to inspect it
-    const rawData = await res.text();  // Get the raw text before parsing to JSON
-    console.log("Raw Response Data:", rawData);
-
-		// This checks that the GET request was successful
-		if (!res.ok) {
-			throw new Error(`Failed to fetch blog. Status Code: ${res.status}`);
-		}
-		return res.json();  // return blog data in JSON format
-	} catch (err: unknown) {
-    // Log the error if something went wrong
-    if (err instanceof Error) {
-      console.log(`Error: ${err.message}`);
-    } else {
-      console.log("Unknown error:", err);
+    if (!res.ok) {
+      console.log("Response Status:", res.status);
+      // Log the raw response to inspect it
+      const rawData = await res.text();  // Get the raw text before parsing to JSON
+      console.log("Raw Response Data:", rawData);
+      throw new Error("Failed to fetch blog");
+      
     }
-		// console.log(`error: ${err}`); // log error to the console
-		return null;  // return null if there was an error
-
-	}
+    return res.json();
+  } catch (err: unknown) {
+    console.error('Error: ${err}'); 
+    return null; 
+  }
 }
+
+    
+
+
 
 // Function to handle posting a new comment to the server
 async function postComment(slug: string, commentData: { user: string; comment: string; time: string }) {
   // const apiUrl = 'https://bootcamp-project-2024-q6r7.vercel.app';
-  const apiUrl = 'http://localhost:3000/api/Blogs/${slug}';
+  const apiUrl = 'http://localhost:3000/api/blogs/${slug}';
   try {
     console.log("posting comment")  // log that we're posting a comment
-    const res = await fetch(`${apiUrl}/api/Blogs/${slug}`, {
+    const res = await fetch(`${apiUrl}/api/blogs/${slug}`, {
       method: "POST", // POST method to send new comment data
       headers: { "Content-Type": "application/json" }, // specify JSON content type
       body: JSON.stringify(commentData),  // convert comment data to JSON and send it  as the request body
@@ -70,60 +65,16 @@ async function postComment(slug: string, commentData: { user: string; comment: s
   }
 }
 
-export default function Blog({ params }: Props) {
-  const { slug } = use(params); // Unwrap params using `use()`
-  const [blog, setBlog] = useState<Blog | null>(null);  // use to store blog data
-  const [newComment, setNewComment] = useState({ user: "", comment: "" }); // store new comment input
-  const [isSubmitting, setIsSubmitting] = useState(false);  // state track submission status of comment 
+export default async function Blog({ params }: Props) {
+  const { slug } = await params; // Unwrap params using `use()`
 
-  // Fetch blog data on mount
-  useEffect(() => {
-    console.log("fetching blog with slug:", slug);
-    getBlog(slug).then((blog) => {
-      console.log("Fetched blog data:", blog);
-      if(!blog) {
-        console.log("blog not found"); // log if no blog is found
-      } else {
-        console.log("blog found:", blog); // if blog is found
-      }
-      setBlog(blog);
-    });
-  }, [slug]);
-
-  // Handle form submission for new comments
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();   // prevent default form submission behavior
-
-    // validate that both user and comment fields are filled out
-    if (!newComment.user || !newComment.comment) {
-      alert("Please fill out all fields."); // aler user if any field is missing
-      return;
-    }
-
-    setIsSubmitting(true);  // set submission state to true to disable the submit button
-
-    // prepare the comment data, adding a timestamp in ISO format
-    const commentData = {
-      ...newComment,
-      // time: new Date(),
-      time: new Date().toISOString(),   // set time to current date and time
-    };
-
-    const response = await postComment(slug, commentData);  // send comment data to the server
-
-    if (response) {
-      setNewComment({ user: "", comment: "" }); // reset submission state
-    }
-
-    // if blog exists, render blog and its comments
-    setIsSubmitting(false);
-  };
-
+  const blog: Blog = await getBlog(slug);
+  
   if (!blog) {
     return (
       <main className={style.blogPage}>
         <h1>Blog Not Found</h1>
-        <p>We couldn&apos;t find the blog you were looking for.</p>
+        <p>We couldn't find the blog you were looking for.</p>
       </main>
     );
   } 
@@ -156,36 +107,6 @@ export default function Blog({ params }: Props) {
             <p>No comments yet.</p>
           )}
 
-          {/* Form to add a new comment */}
-        <form onSubmit={handleSubmit} className={style.commentForm}>
-          <h3>Add a Comment</h3>
-          <input
-            type="text"
-            placeholder="Your name"
-            value={newComment.user}
-            onChange={(e) =>
-            setNewComment((prev) => ({ ...prev, user: e.target.value }))
-          }
-            required
-            className={style.input}
-          />
-          <textarea
-            placeholder="Your comment"
-            value={newComment.comment}
-            onChange={(e) =>
-              setNewComment((prev) => ({ ...prev, comment: e.target.value }))
-            }
-            required
-            className={style.textarea}
-          />
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className={style.submitButton}
-            >
-              {isSubmitting ? "Submitting..." : "Submit"}
-            </button>
-          </form>
         </section>
       </main>
     );
