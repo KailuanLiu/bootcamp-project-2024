@@ -22,10 +22,6 @@ async function getBlog(slug: string) {
 		});
 
     if (!res.ok) {
-      console.log("Response Status:", res.status);
-      // Log the raw response to inspect it
-      const rawData = await res.text();  // Get the raw text before parsing to JSON
-      console.log("Raw Response Data:", rawData);
       throw new Error("Failed to fetch blog");
       
     }
